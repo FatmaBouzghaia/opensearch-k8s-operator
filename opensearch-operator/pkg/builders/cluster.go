@@ -433,6 +433,8 @@ func NewSTSForNodePool(
 							SecurityContext: securityContext,
 						},
 					},
+					HostNetwork:               true,                              // CRITEO WORKAROUND
+					DNSPolicy:                 corev1.DNSClusterFirstWithHostNet, // CRITEO WORKAROUND
 					InitContainers:            initContainers,
 					Volumes:                   volumes,
 					ServiceAccountName:        cr.Spec.General.ServiceAccount,
@@ -807,6 +809,8 @@ func NewBootstrapPod(
 					SecurityContext: securityContext,
 				},
 			},
+			HostNetwork:        true,                              // CRITEO WORKAROUND
+			DNSPolicy:          corev1.DNSClusterFirstWithHostNet, // CRITEO WORKAROUND
 			InitContainers:     initContainers,
 			Volumes:            volumes,
 			ServiceAccountName: cr.Spec.General.ServiceAccount,
@@ -956,6 +960,8 @@ func NewSnapshotRepoconfigUpdateJob(
 					RestartPolicy:      corev1.RestartPolicyNever,
 					Volumes:            volumes,
 					SecurityContext:    podSecurityContext,
+					HostNetwork:        true,                              // CRITEO WORKAROUND
+					DNSPolicy:          corev1.DNSClusterFirstWithHostNet, // CRITEO WORKAROUND
 				},
 			},
 		},
@@ -1018,6 +1024,8 @@ func NewSecurityconfigUpdateJob(
 					RestartPolicy:      corev1.RestartPolicyNever,
 					ImagePullSecrets:   image.ImagePullSecrets,
 					SecurityContext:    podSecurityContext,
+					HostNetwork:        true,                              // CRITEO WORKAROUND
+					DNSPolicy:          corev1.DNSClusterFirstWithHostNet, // CRITEO WORKAROUND
 				},
 			},
 		},
